@@ -423,7 +423,6 @@ Planning must involve (checklist — order roughly reflects the process):
 - **Interacting** = you *can* tell, and the answer is "it depends" — effect of one variable genuinely **changes** across levels of another
 
 ⚠️ EXAM TRAP: an observational study finding a strong **association/correlation** (e.g. vegetarians have lower heart-attack death rates, even adjusting for smoking/weight/class) does **NOT** prove the vegetarian diet **causes** lower death rates — a possible **confounding variable** could still exist (e.g. general health-consciousness, exercise habits) that wasn't measured/adjusted for.
-
 ## A15. Graphing Categorical Data
 
 | Term | Meaning |
@@ -470,6 +469,13 @@ Planning must involve (checklist — order roughly reflects the process):
 - Points beyond **3×d** from the box are marked with **○** (extreme outliers), in schemes that distinguish the two
 - ⚠️ A boxplot's horizontal width carries **no meaning** — only vertical position matters (for a vertical boxplot)
 
+**Finding the median/quartiles by counting through a stem-and-leaf plot (or any ordered list)** ⭐ — process:
+1. Count the **total number of observations**, n (a stem-and-leaf plot lists data already sorted smallest→largest, stem by stem)
+2. Median position: if n is **odd**, median = the middle observation, position (n+1)/2 counting from either end. If n is **even**, average the two middle observations, positions n/2 and (n/2)+1
+3. To find the median value, count leaves in from the **top** stem downward (or bottom stem upward) — whichever is closer — tallying how many observations you pass, until you reach the target position
+4. **Quartiles**: once the median is located, treat the lower half of the data (all observations below the median) as its own ordered list and find **its** median = Q1; do the same with the upper half for Q3. (If n is odd, the median observation itself is excluded from both halves; conventions on this can vary slightly, which is part of why hand and software answers can differ.)
+5. Worked example (processing-time stem-and-leaf, n=35): median is the 18th observation (odd n, (35+1)/2=18) — count leaves from the first stem row downward, tallying 3, then 3+8=11, then 11+11=22 — so the 18th observation falls within the 3rd stem row (the row that pushes the cumulative count past 18); read off that specific leaf value and attach it to its stem to get the median.
+
 ⚠️ EXAM TRAPS (skewness/shape from a boxplot — heavily tested):
 - **Long upper whisker + median close to Q1 (bottom of box)** → distribution is **right-skewed** (positively skewed) — most values bunched low, with a long tail of high values (Practice MCQ Q15, Q36)
 - **Long lower whisker + median close to Q3** → distribution is **left-skewed** (negatively skewed)
@@ -482,6 +488,7 @@ Planning must involve (checklist — order roughly reflects the process):
 **Histogram-specific exam traps:**
 - **Unequal bin widths**: if a histogram uses unequal-width intervals, **bar height can't validly represent frequency directly** — you need **frequency density** (height = frequency ÷ bin width) so that bar **area** (not height) represents the frequency; this is why "frequency density" is used on the y-axis for unequal-width histograms (Practice MCQ Q3, Q35)
 - A histogram with **two clear peaks (bimodal)** suggests the data may actually be **two distinct subgroups** mixed together, each with its own typical value (e.g. commute-time histogram peaking at 15min and 60min → likely local vs long-distance commuters) (Practice MCQ Q9)
+- **Unimodal** = a single high point/peak in a histogram, dotplot, or stem-and-leaf plot (the "normal"/expected shape for one homogeneous group); contrast with **bimodal** above
 
 ## A17. Comparing Groups, Scatterplots & Time Series
 
@@ -563,7 +570,6 @@ Planning must involve (checklist — order roughly reflects the process):
 - 4 continuous-data displays: Dotplot / Stem-leaf / Histogram / Boxplot — boxplot best for comparing groups, histogram best for shape
 - Boxplot skew reading: long tail side = skew direction; mean follows the tail
 - Confounding = tangled, can't separate; Interacting = separable, effect depends on the other variable; Lurking = unmeasured variable causing a spurious link
-
 # PART B — TOPIC 2: Summarising Data & Probability
 
 ## B1. Measures of Location
@@ -666,7 +672,6 @@ Three commonly used measures:
 - Boxplot = the "**five-number summary**" displayed graphically: Minimum, Q1 (bottom of box), Median (line inside box), Q3 (top of box), Maximum (via whiskers, subject to the 1.5×IQR outlier rule from A16)
 - "Box" = middle 50% of data; whiskers extend toward min/max (bounded by the 1.5×IQR rule); outliers plotted separately as points/asterisks
 - Comparing boxplots side-by-side (e.g. by gender) lets you read off and compare **medians directly** (e.g., median right-hand grip strength: males vs females) without raw data
-
 ## B6. Probability Basics & Rules
 
 - **Probability**: a measure of the **likeliness** of an event occurring
@@ -678,6 +683,17 @@ Three commonly used measures:
   - **Complement rule**: P(event) = 1 − P(event does NOT happen) → e.g. P(rain) = 1 − P(no rain)
   - **"At least one" rule**: P(at least one occurs) = 1 − P(none occur) → e.g. P(rain on ≥1 day next week) = 1 − P(no rain all week)
 - **Probability model**: a systematic way of assigning probabilities, either estimated **from data** (empirically) or from **assumptions** about the situation (theoretically)
+
+**Addition rule (overlapping categories)** ⭐ — needed whenever two events/categories can both apply to the same subject:
+- P(A or B) = P(A) + P(B) − P(A **and** B) — subtract the overlap once so it isn't double-counted
+- P(A but **not** B) = P(A) − P(A **and** B)
+- Worked example (car safety checks, n=200): 50 defective brakes, 115 defective steering, 45 defective **both**:
+  - P(defective brakes) = 50/200 = 0.25
+  - P(defective steering) = 115/200 = 0.575
+  - P(both defects) = 45/200 = 0.225
+  - P(brakes but **not** steering) = (50−45)/200 = 5/200 = 0.025 ⚠️ NOT simply 50/200 — must subtract the 45 that overlap with steering first
+  - (P(brakes or steering) would be 0.25+0.575−0.225 = 0.60 by the addition rule)
+- ⚠️ EXAM TRAP: "A but not B" is **not** the same as "A" — always subtract the "both" overlap first when two categories can co-occur for the same subject.
 
 **Where probability estimates come from — empirical estimation:**
 - Formula: estimated P(event) = (number of times event occurred) ÷ (total number of trials/observations)
@@ -807,7 +823,6 @@ P(morning commuter uses lift) = 222/432 = 0.514; P(evening commuter uses lift) =
 - Median of a distribution = 50%-point; quartiles = 25%/75%-points
 - Parameter (population, unknown) vs Estimate/statistic (sample, calculated)
 - Misleading graphs: zero-axis rule for bar charts; no 3-D; pie % must total 100%; histogram bars touch; unequal bins need frequency density; correlation ≠ causation (watch for lurking variables)
-
 # PART C — "What to Look For" Keyword Map
 
 Use this to map exam-question wording straight to the right section.
